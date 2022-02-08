@@ -10,15 +10,16 @@ const Thumbnail = forwardRef(({ result }, ref) => {
         `${BASE_URL}${result.backdrop_path}` ||
         result.poster_path;
     return (
-        <div ref={ref} className="p-2 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
+        <div ref={ref} className="p-4 m-1 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50 ">
             <Image
-                alt=""
+                alt={result.title || ''}
                 src={imgSrc}
                 layout="responsive"
-                height={1080}
-                width={1920}
+                height={800}
+                width={680}
+                className="object-cover bg-[#fff] rounded-md"
             />
-            <div className="p-2">
+            <div className="p-8">
                 <p className="truncate max-w-md">{result.overview}
                 </p>
                 <h2 className="mt-1 text-2xl text-white transition-all ease-in-out duration-100 group-hover:font-bold">
