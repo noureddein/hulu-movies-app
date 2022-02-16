@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Results from '../components/Results';
 import requests from '../utlis/requests'
+import Script from 'next/script';
 
 export default function Home({ results }) {
 
@@ -12,6 +13,7 @@ export default function Home({ results }) {
         <title>Hulu 2.0</title>
         <meta name="description" content="Movie app using api" />
         <link rel="icon" href="/favicon.ico" />
+
       </Head>
 
       {/* Header */}
@@ -37,10 +39,3 @@ export async function getServerSideProps(context) {
   }
 }
 
-export function x(context) {
-  return {
-    props: {
-      hello: 'hello'
-    }
-  }
-}
