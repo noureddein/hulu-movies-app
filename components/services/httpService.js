@@ -1,6 +1,7 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = process.env.BACKEND_URL
+// axios.defaults.baseURL = 'http://localhost:3001'
 
 
 axios.interceptors.response.use(null, error => {
