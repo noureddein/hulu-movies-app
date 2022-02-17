@@ -3,7 +3,7 @@ import { ArrowSmLeftIcon, TrashIcon } from '@heroicons/react/outline';
 import http from '../services/httpService';
 import auth from "../services/authService";
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
 function Modal({ modalStat, setModalStat, result, imgSrc }) {
@@ -26,13 +26,15 @@ function Modal({ modalStat, setModalStat, result, imgSrc }) {
 
     const handleDelete = async movieId => {
         http.post(`/deleteMovie/${movieId}`, { email: user.email })
-            .then(router.reload('/savedCollections'))
+            .then(res => {
+                router.reload('/savedCollections')
+                toast.info(res)
+            })
             .catch(err => console.log(err))
     }
 
     return (
         <>
-            <ToastContainer />
             <div className=' fixed top-0 left-0 w-screen h-screen bg-[#3A687A4d] flex flex-col justify-center items-center z-20 overflow-scroll'>
                 <div className=" w-full  xsm:w-11/12 container z-50 bg-[#090e2a] rounded-lg xsm:overflow-scroll xsm:my-4">
                     <div className="shadow-lg bg-[#090e2a0a] w-full flex items-center justify-start p-4  rounded-tl-md rounded-tr-md xsm:sticky xsm:top-0 xsm:z-50 xsm:bg-[#090e2a]">

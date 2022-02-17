@@ -1,7 +1,7 @@
 import Form from '../common/form/Form'
 import Joi from 'joi-browser';
-import axios from 'axios';
 import auth from '../services/authService';
+import http from '../services/httpService';
 
 class SignUp extends Form {
     state = {
@@ -16,19 +16,18 @@ class SignUp extends Form {
     }
 
     doSubmit = async () => {
+
         const { password, repeat_password } = this.state.data
         if (password !== repeat_password) return this.setState({
             errors: {
                 repeat_password: 'Passwords does not match'
             }
-
         })
+        const { data } = await http.post('/signup', this.state.data)
 
-        const { data } = await axios.post('http://localhost:3001/signup', this.state.data)
+        if (data.errors) return this.setState({ errors: data.errors })
+        window.location = '/'
 
-        if (data.errors) {
-            this.setState({ errors: data.errors })
-        }
     }
 
     render() {
