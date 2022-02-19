@@ -4,19 +4,19 @@ const Select = ({ name, label, options, error, ...rest }) => {
     return (
         <>
             <div className="form-group">
-                <label htmlFor={name}>{label}</label>
-                <select name={name} id={name} {...rest} className="form-control">
+                <label className="mr-3" htmlFor={name}>{label}</label>
+                <select name={name} id={name} {...rest} className="text-black outline-none rounded-lg p-1">
                     <option value="" />
                     {
                         options.map(option => (
-                            <option key={option._id} value={option._id}>
+                            <option className="text-black" key={option.id} value={option.id}>
                                 {option.name}
                             </option>
                         ))
                     }
                 </select>
                 {
-                    error && <div className="alert alert-danger">{error}</div>
+                    // error && <div className="alert alert-danger">{error}</div>
                 }
             </div>
         </>
